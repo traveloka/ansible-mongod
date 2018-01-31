@@ -13,18 +13,6 @@ These variables are not defined by default, but can be passed to the role to mod
     - name: mongodb_bind_ip
       desc: IP address MongoDB should to bind to
 
-    - name: mongodb_keyfile
-      desc: local path to keyfile used for replica set synchronization
-
-    - name: mongodb_keyfile_content
-      desc: content of the kefile for replica sync, overrides contents of `mongodb_keyfile` if both defined
-
-    - name: mongodb_repl_set_name
-      desc: MongoDB replica set name
-
-    - name: mongodb_repl_oplog_size
-      desc: replication OpLog size
-
 ### Defaults ##
 
     - name: mongodb_version
@@ -42,10 +30,6 @@ These variables are not defined by default, but can be passed to the role to mod
     - name: mongodb_logpath
       value: /var/log/mongodb/mongod.log
       desc: path to log
-
-    - name: mongodb_keyfile_path
-      value: /etc/mongodb_keyfile
-      desc: default keyfile location
 
     - name: mongodb_storage_engine
       value: "wiredTiger"
@@ -125,35 +109,10 @@ Install standalone MongoDB specifying port, IP and with journal disabled
       mongodb_journal_enabled: false
 ```
 
-Install replica MongoDB with custom oplog size
-
-```
-- hosts: all
-  roles:
-    - role: shared/mongodb-3.0
-      mongodb_repl_set_name: replicaA
-      mongodb_repl_oplog_size: 51200
-      mongodb_keyfile: /local/path/to/keyfile
-```
-
-Install MongoDB arbiter
-
-```
-- hosts: all
-  roles:
-    - role: shared/mongodb-3.0
-      mongodb_is_arbiter: true
-      mongodb_repl_set_name: replicaA
-      mongodb_keyfile: /local/path/to/keyfile
-```
-
 Install MongoDB with specific version (3.0.4)
 
 ```
 - hosts: all
   roles:
     - role: shared/mongodb-3.0
-      mongodb_repl_set_name: replicaA
-      mongodb_repl_oplog_size: 51200
-      mongodb_keyfile: /local/path/to/keyfile
       mongodb_version: 3.0.4
