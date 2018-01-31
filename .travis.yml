@@ -8,7 +8,7 @@ dist: "trusty"
 before_install:
   - sudo apt-get update -qq
   - sudo apt-get install -qq python-apt
-  - sudo apt-get purge --auto-remove mongodb_org*
+  - dpkg -l | grep mongo
 
 install:
   - pip install ansible==2.4
