@@ -2,8 +2,8 @@
 
 language: python
 python: "2.7"
+sudo: "required"
 dist: "trusty"
-sudo: false
 
 before_install:
   - sudo apt-get update -qq
@@ -14,6 +14,7 @@ install:
   - gem install inspec
 
 script:
+  - sudo lsb_release -a
   - ansible-playbook -i tests/inventory tests/test.yml --syntax-check
   - ansible-playbook -i tests/inventory tests/test.yml --connection=local --sudo -vv
   - inspec exec tests/ansible-mongod-3.0_spec.rb
