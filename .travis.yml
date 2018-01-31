@@ -16,5 +16,5 @@ install:
 script:
   - sudo lsb_release -a
   - ansible-playbook -i tests/inventory tests/test.yml --syntax-check
-  - ansible-playbook -i tests/inventory tests/test.yml --connection=local --sudo -vv
+  - ansible-playbook -i tests/inventory tests/test.yml --connection=local --sudo -vvv
   - inspec exec tests/ansible-mongod-3.0_spec.rb
