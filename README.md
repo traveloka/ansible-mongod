@@ -1,4 +1,4 @@
-# shared/mongodb #
+# ansible-mongodb-3.0 #
 
 Ensures MongoDB 3.0 is installed and configured.
 
