@@ -4,7 +4,7 @@
     - name: add mongodb key
       apt_key:
         keyserver: keyserver.ubuntu.com
-        id: 9ECBEC467F0CEB10
+        id: 7BB9C367
         state: present
 
     - name: add mongodb repository for v3.0.X
