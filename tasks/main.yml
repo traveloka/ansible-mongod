@@ -37,7 +37,7 @@
         mode: 0600
         content: "{{ mongodb_keyfile_content }}"
       notify: restart mongodb
-      when: "{{ mongodb_keyfile_content is defined }}"
+      when: "mongodb_keyfile_content is defined"
 
     - name: add mongodb directories
       file:
