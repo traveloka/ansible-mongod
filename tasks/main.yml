@@ -28,6 +28,16 @@
         update_cache: yes
         cache_valid_time: "{{ apt_cache_valid_time | default(omit) }}"
       with_items: "{{ mongodb_packages }}"
+    
+    - name: copy mongodb replication keyfile content
+      copy:
+        dest: "{{ mongodb_keyfile_path }}"
+        owner: "{{ mongodb_user }}"
+        group: "{{ mongodb_group }}"
+        mode: 0600
+        content: "{{ mongodb_keyfile_content }}"
+      notify: restart mongodb
+      when: "{{ mongodb_keyfile_content is defined }}"
 
     - name: add mongodb directories
       file:
